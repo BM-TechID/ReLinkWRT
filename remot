@@ -1,1 +1,37 @@
 #remot
+#!/bin/bash
+
+clear;x=20
+while true; do
+ if [ -f $(ps w|grep host.run|grep ssh|grep 80|awk '{print $1}') ]; then
+x=0;rm -rf /root/log-ReLink.txt;echo "Tunggu sedela cuk !!!" > /root/log-ReLink.txt
+rm -rf /root/.ssh/known_hosts
+screen -dmS remote -L -Logfile /root/log-ReLink.txt ssh -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=no -R 80:localhost:80 localhost.run
+ fi
+ while [ $x -lt 20 ]; do
+host=$(cat /root/log-ReLink.txt|grep tunneled|awk '{print $1}')
+ if [ $x -eq 19 ]; then
+kill $(ps w|grep host.run|grep ssh|awk '{print $1}') 2>/dev/null
+x=20;break
+ fi
+  if [ ! -f $host ]; then
+echo "Update link alternatif cuk !!!" >> /root/log-ReLink.txt
+ fi
+
+ #Kirim ke Bot Telegram
+TokenBOT="copas disini"
+ChatID="copas disini"
+Message="ID Server: <b>$(hostname)</b>\nIP Server: <b>$(hostname -I)</b>\nPort Server: <b>80</b>\n\nLink: <a href='$host'>$host</a>"
+curl -s -X POST "https://api.telegram.org/bot$TokenBOT/sendMessage?chat_id=$ChatID&parse_mode=HTML&text=$Message"
+clear; sleep 1; echo " Sukses terkirim ke bot Telegram"
+echo "Host: $host"; x=20;break
+ fi
+ x=$((x+1))
+ sleep 1
+done
+done
+  fi
+sleep 1;((x++))
+ done
+sleep 1
+done
