@@ -7,7 +7,7 @@ echo -e "\t\tAuto Installer Remot Link OpenWRT "
 echo "||==============================================================||"
 sleep 2
 
-echo -e "\nAutomatically installntools pendukung (Link-RemoteOpwnWRT)"
+echo -e "\n\nAutomatically install tools pendukung (Link-RemoteOpwnWRT)\n"
 opkg update && opkg install openssh-server screen wget
 
 echo -e "\nBuilding Publickey...";sleep 1
