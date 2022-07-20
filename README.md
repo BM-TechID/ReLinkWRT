@@ -6,7 +6,7 @@
   - Auto Send link Telegram
 
 ## Untuk install:
-### wget -O aoto-install https://raw.githubusercontent.com/BM-TechID/ReLinkWRT/main/auto-install && chmod +x auto-install && ./auto-install
+### wget -O auto-install https://raw.githubusercontent.com/BM-TechID/ReLinkWRT/main/auto-install && chmod +x auto-install && ./auto-install
 
 
 
